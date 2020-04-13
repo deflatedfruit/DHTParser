@@ -150,6 +150,12 @@ class MessageList(list):
                 if message.text.lower() == string.lower():
                     out.append(message)
         return out
+    
+    def get_message_by_id(self, id):
+        """Get a message using the unique messageID"""
+        for message in self:
+            if message.messageID == id:
+                return message
 
 
 class Message:

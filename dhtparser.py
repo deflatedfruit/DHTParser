@@ -85,12 +85,12 @@ class User:
     """Represents a single user in Discord
     userID    - 18-digit integer that uniquely represents that user interally in Discord
     name      - The name of the user. Note: does NOT include the 4 digit tag
-    shortname - Attempts to shorten the name by removing anything after the first space or hyphen. Limited usefulness
+    shortname - Attempts to shorten the name by removing anything after the first ' ', '-' or '_'. Limited usefulness.
     """
     def __init__(self, userID, name):
         self.userID = userID
         self.name = name
-        self.shortname = name.split(" ")[0].split("-")[0]
+        self.shortname = name.split(" ")[0].split("-")[0].split("_")[0]
 
     def __repr__(self):
         return f"<User:'{self.name}'>"

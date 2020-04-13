@@ -51,6 +51,34 @@ class Channel:
 
     def __repr__(self):
         return f"<Channel:{self.name}, Type:{self.type}>"
+    
+    def find_user(self, name, strict=True, case=False):
+        """Find a user (or users) with the name 'name'. If strict=True, then only exact matches will be returned,
+        otherwise any user containing the substring 'name' will be returned. If case=True, then matching will be
+        case sensitive"""
+        out = []
+        for user in self.users:
+            if strict:
+                if case:
+                    if name == user.name:
+                        out.append(user)
+                else:
+                    if name.lower() == user.name.lower():
+                        out.append(user)
+            else:
+                if case:
+                    if name in user.name:
+                        out.append(user)
+                else:
+                    if name.lower() in user.name.lower():
+                        out.append(user)
+        return out
+
+    def find_user_by_id(self, id):
+        """Find a user given by the unique 18-digit ID"""
+        for user in self.users:
+            if user.userID == id:
+                return user
 
 
 class User:
